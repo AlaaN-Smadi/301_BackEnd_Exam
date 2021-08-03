@@ -14,6 +14,11 @@ const Schema = mongoose.Schema;
 
 mongoose.connect('mongodb://localhost:27017/finalExam', {useNewUrlParser: true, useUnifiedTopology: true});
 
+
+// mongoose.connect('mongodb://AlaaN-Smadi:eK27ppQjA2BT4A@cluster0-shard-00-00.z6gxe.mongodb.net:27017,cluster0-shard-00-01.z6gxe.mongodb.net:27017,cluster0-shard-00-02.z6gxe.mongodb.net:27017/MyFinalExam?ssl=true&replicaSet=atlas-4riz20-shard-0&authSource=admin&retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
+
+
+
 const PORT = process.env.PORT
 
 app.listen(PORT,()=>{
@@ -114,8 +119,10 @@ app.get('/getApiData', async(req, res) =>{
 app.get('/myFavItems', (req,res)=>{
     const userEmail = req.query.userEmail
 
+    console.log(userEmail);
 
-    userModel.find({email: 'alaasmadi1010@gmail.com'}, function(error, userInfo){
+
+    userModel.find({email: userEmail}, function(error, userInfo){
         if(error){
             res.send('Data not Found')
         }else{
